@@ -1,0 +1,90 @@
+# ============================================================
+# ONE-CLICK AUTOMATION PROMPT
+# ============================================================
+# Workflow: generate-automation-from-testcases
+# ============================================================
+#
+# HOW TO USE:
+# 1. Copy everything below the "---START---" line
+# 2. Replace the parts in [...] with your real data
+# 3. Paste it into the chat and send
+# 4. Sit back while the AI works through all 6 steps
+#
+# ============================================================
+
+---START---
+
+Use the generate-automation-from-testcases skill.
+
+You are a Senior Automation Engineer with 10 years of experience. Automate all the Manual Test Cases below into a complete, runnable automation test script that PASSes 100%.
+
+=== TECH STACK ===
+
+- Framework: [Choose 1: Playwright (TypeScript) / Playwright (Java) / Selenium WebDriver (Java/TestNG) / Appium (Java)]
+- Language: [TypeScript / Java]
+- Build tool: [npm / Maven / Gradle]
+- Test Runner: [Playwright Test / TestNG / JUnit]
+- Reporting: [Playwright HTML Reporter / Allure Report / ExtentReport]
+
+=== ENVIRONMENT INFO ===
+
+- URL: [Example: https://app.example.com/login]
+- Test Account: [Example: admin@example.com / Admin@123]
+- Browser: [Chrome / Firefox / Edge -- default Chromium]
+
+=== PROJECT ARCHITECTURE ===
+
+[Choose 1 of 2:]
+
+Option A: New project -- the AI creates it using the standard POM architecture
+
+Option B: Existing project -- describe the current directory structure, for example:
+  src/main/java/pages/     -> Page Objects
+  src/test/java/tests/     -> Test classes
+  src/main/java/utils/     -> Utilities
+  ...
+
+=== MANUAL TEST CASES ===
+
+[Paste all your Manual Test Cases here, or attach a file. Example:
+
+TC_LOGIN_001: Successful login with a valid account
+- Precondition: The user has an active account
+- Steps:
+  1. Open the Login page
+  2. Enter email: admin@example.com
+  3. Enter password: Admin@123
+  4. Click the Sign In button
+- Expected result: Redirects to the Dashboard, displays the user name Admin
+
+TC_LOGIN_002: Failed login with a wrong password
+- Precondition: The user has an active account
+- Steps:
+  1. Open the Login page
+  2. Enter email: admin@example.com
+  3. Enter the wrong password: WrongPassword
+  4. Click the Sign In button
+- Expected result: Displays the error message Invalid credentials
+]
+
+=== MANDATORY PRINCIPLES ===
+
+1. DOM Recon First: Open the browser (MCP) yourself and inspect the real DOM to get locators. NEVER guess selectors.
+2. Page Object Model: Clearly separate Pages and Tests.
+3. Smart Waits: NEVER use Thread.sleep or page.waitForTimeout. Auto-waiting only.
+4. Unique Test Data: Data must be unique + traceable, format: auto_[testName]_[timestamp]@test.com
+5. Self-fix Loop: After generating code, run the tests yourself; if they FAIL, read the logs, fix them, and re-run until they PASS.
+6. Clean Code: After they PASS, remove debug logs, unused code, and commented code, and deliver a clean version.
+
+=== EXECUTION PROCESS (the AI runs all of it) ===
+
+Automatically perform the following 6 steps in sequence WITHOUT asking me (unless you hit a conflicting business rule):
+
+1. Take in the context, confirm the tech stack and scope
+2. Open the browser, navigate to the URL, inspect the DOM, collect locators (in a table)
+3. Design the POM, create Page classes with the locators from Step 2
+4. Generate Test Data, create a DataGenerator class (unique + traceable)
+5. Generate the Test Script, write the test file, run the tests, self-fix loop until they PASS
+6. Clean up the code, remove debug artifacts, deliver the clean code version
+
+Start now. Confirm briefly, then proceed to Step 2 (open the browser and inspect the DOM).

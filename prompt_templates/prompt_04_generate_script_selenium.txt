@@ -1,0 +1,44 @@
+Use the generate-automation-from-testcases skill.
+
+# CONTEXT
+- Language: Java
+- Test Framework: TestNG
+- Automation Tool: Selenium WebDriver v4
+- Design Pattern: Page Object Model (POM)
+- Build tool: Maven
+
+# SYSTEM
+- URL: [System URL]
+- Test account: [Use an existing fixture / or EMAIL + PASSWORD]
+
+# PROJECT (choose 1 of 2)
+
+## A. Existing source code (EXISTING PROJECT)
+- Project path: [path/to/project]
+- The agent MUST read the project structure, base classes, and config before generating code
+- The agent MUST follow the existing conventions (naming, folder, patterns)
+- The agent MUST reuse BasePage, BaseTest, DriverFactory, Utils — DO NOT create duplicates
+- The agent MUST place files in the correct location within the existing project structure
+
+## B. No project yet (NEW PROJECT)
+- The agent scaffolds the structure following the generate-automation-framework workflow
+
+# TEST CASES
+[PASTE THE TEST CASES HERE — as a table or a list of steps]
+
+Example:
+| TC ID | Title | Steps | Expected Result | Priority |
+|---|---|---|---|---|
+| TC01 | Successful login | 1. Open the login page 2. Enter email 3. Enter password 4. Click Login | Dashboard is displayed | P1 |
+
+# OUTPUT FORMAT
+- Page Object classes (Generated in the correct pages folder & following the naming convention)
+- Test classes (Extend BaseTest, use TestNG annotations)
+- Utilities / Data Generators (Reuse existing utils or add new ones if needed)
+- Artifact task.md (progress checklist for the steps)
+- Test run result (PASS/FAIL summary - the test must PASS twice in a row)
+
+# NOTES
+- The agent opens a browser, inspects the UI, and collects locators from the real DOM
+- The agent runs the test and auto-heals on FAIL (without asking the user — Rule E3)
+- If it is an existing project: the agent reads the code first → follows the existing patterns

@@ -1,0 +1,15 @@
+Use the generate-test-data skill.
+
+# CONTEXT
+- Module: [Module name. Example: Customer Management]
+- Data fields: [List the fields. Example: Name, Email, Phone, Address, Customer Code]
+- Constraints:
+  [Describe the validation rules. Example:
+  - Name: 2-100 characters, must not contain digits
+  - Email: standard format, unique
+  - Phone: 10 digits, starts with 0]
+
+# OUTPUT FORMAT
+| # | Group | Field name | Value | Test purpose | Expected |
+
+Include a DataGenerator class in code (Java or TypeScript depending on the project).

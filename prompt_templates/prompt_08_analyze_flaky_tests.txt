@@ -1,0 +1,38 @@
+Use the analyze-flaky-tests skill.
+
+# CONTEXT
+- Framework: [Playwright (TypeScript) / Selenium (Java) / Appium (Java)]
+- Test Runner: [Playwright Test / TestNG / Pytest]
+- Environment: [Local / CI/CD pipeline]
+- Mode: [ANALYZE (report only) / FIX (report + fix the code)]
+
+# FLAKY TEST
+[Provide one of the following:]
+
+## Option 1: File path + error log
+- Test file: [path/to/test_file.ts]
+- Failure frequency: [e.g., 3/10 runs]
+- Error log:
+```
+[PASTE THE ERROR LOG / STACK TRACE HERE]
+```
+
+## Option 2: File path only (the agent runs the test)
+- Test file: [path/to/test_file.ts]
+- The agent will run it 3 times to reproduce the failure
+
+## Option 3: Source code
+```typescript
+[PASTE THE SOURCE CODE HERE]
+```
+
+# OUTPUT FORMAT
+1. Root Cause Analysis table:
+   | # | Location | Category | Description | Severity | Suggested fix |
+2. Specific code fix (old code → new code)
+3. Stability checklist
+4. Verification result (if Mode FIX)
+
+# NOTES
+- Mode ANALYZE: The agent only analyzes + reports, it does not modify the code
+- Mode FIX: The agent analyzes + fixes the code + runs verification, passing 3 times in a row

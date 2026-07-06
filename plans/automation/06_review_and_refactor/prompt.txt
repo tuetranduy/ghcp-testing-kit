@@ -1,0 +1,71 @@
+# ============================================================
+# STEP 6: REVIEW & REFACTORING
+# ============================================================
+# Workflow: generate-automation-from-testcases (continued)
+# Skill:    qa-automation-engineer
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER the tests have PASSed in Step 5
+# 2. The AI will review and clean up the code
+# 3. Receive the final code → merge into the repository
+# ============================================================
+
+---START---
+
+The tests have PASSed on the local machine. Before merging into the repository, review and optimize the code.
+
+## Refactoring Tasks:
+
+### 1. Remove Debug Artifacts
+
+- Remove all `console.log`, `System.out.println`, and `print()` calls added while debugging
+- Remove commented-out code (`//`, `/* */`) that is no longer used
+- Remove declared but unused variables/locators (unused code)
+
+### 2. Check Code Quality
+
+- [ ] Are variable and method names meaningful?
+- [ ] Is any method too long and in need of splitting? (>20 lines)
+- [ ] Is there duplicate logic that should be extracted into a helper?
+- [ ] Are the import statements clean?
+
+### 3. Check Test Stability
+
+- [ ] Did any hard sleeps slip through?
+- [ ] Are the assertions complete and correct?
+- [ ] Is the test data unique on every run?
+- [ ] Is each test case independent? (not dependent on other tests)
+
+### 4. CI/CD Readiness
+
+[Customize for your framework:]
+
+Playwright:
+```typescript
+// Add tags to run selectively
+test.describe('Login Module', () => {
+  test.describe.configure({ mode: 'parallel' });
+  // ...
+});
+```
+
+Selenium/TestNG:
+```java
+@Test(groups = {"smoke", "regression"})
+public void testLoginSuccess() { ... }
+```
+
+Appium:
+```java
+@Test(groups = {"mobile", "regression"})
+public void testLoginMobile() { ... }
+```
+
+### 5. Documentation (optional)
+
+- Add descriptive comments for complex methods
+- Update the README if the project structure changed
+
+---
+
+Return the **final, most polished version** of the code (Clean Code), ready to commit.

@@ -1,0 +1,59 @@
+# ============================================================
+# STEP 2: REQUIREMENT ANALYSIS AND Q&A (Analysis & QnA)
+# ============================================================
+# This is a standalone prompt — copy & paste into any AI
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER the AI has confirmed it understands the context in Step 1
+# 2. Read the questions the AI generates
+# 3. Answer each question for the AI
+# 4. Once all are resolved → move to Step 3
+# ============================================================
+
+---START---
+
+Based on the requirement documents and context provided in Step 1, analyze this requirement in detail.
+
+## Your tasks:
+
+### 1. Identify flows
+
+List all flows in full:
+- **Happy Path:** The main business flow that runs smoothly
+- **Alternate Paths:** Valid branching flows (for example, the user selects a different payment method)
+- **Exception Paths:** Exception / error flows (for example, connection loss, timeout, invalid format input)
+
+[Additional hints (if needed): Pay special attention to analyzing flows such as:
+- Connection interrupted midway
+- Invalid data format entered
+- Uploading a file that is too large
+- Concurrent access
+- ...]
+
+### 2. Ambiguity Detection
+
+Detect and list the points that are:
+- **Missing:** Information not mentioned in the documents
+- **Contradictory:** Requirements that conflict with each other
+- **Unclear:** Requirements that can be interpreted in multiple ways
+
+[Checks to consider (if needed): Do the documents specify?
+- The max/min length of each Textbox field
+- API call timeout
+- Behavior on connection loss
+- Specific permission rules
+- Input data format (email, phone number, dates)
+- ...]
+
+### 3. Q&A
+
+Provide a **numbered** list of questions that I or the PO/BA can answer.
+Each question should:
+- Be clearly numbered (Q1, Q2, Q3...)
+- State clearly the context for why it is being asked
+- Propose an assumption in case it is not answered
+
+---
+
+Present the analysis results in **well-structured Markdown**.
+⏸️ **AFTER COMPLETING**, stop and wait for me to answer the questions before moving to Step 3.

@@ -1,0 +1,62 @@
+# ============================================================
+# STEP 2: ANALYSIS & UI RECON
+# ============================================================
+# Workflow: generate-automation-from-testcases (continued)
+# Skill:    qa-automation-engineer + ui-debug-agent
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER the AI has confirmed in Step 1
+# 2. Fill in the URL, test account, and Manual Test Cases
+# 3. The AI will AUTOMATICALLY open the browser, inspect the DOM, and collect locators
+# 4. Review the locator table the AI returns → move to Step 3
+# ============================================================
+
+---START---
+
+Below are the **Manual Test Cases** to automate. Before writing any code, you **MUST** survey and collect the real locators on the UI (UI Recon).
+
+## Environment Info
+
+- **URL:** [Enter the URL. Example: https://dev.crm.system.local/login]
+- **Test Account:** [Example: user_admin@domain.com / password123]
+- **Browser:** [Chrome / Firefox / Edge — default Chromium]
+
+## Manual Test Cases
+
+[Copy/Paste the Manual Test Cases here. Example:
+
+**TC_01: Successful login**
+1. Open the Login page
+2. Enter a valid email: admin@crm.com
+3. Enter a valid password: Admin@123
+4. Click the "Login" button
+5. Verify: Redirects to the Dashboard, displays the user name
+
+**TC_02: Failed login — wrong password**
+1. Open the Login page
+2. Enter email: admin@crm.com
+3. Enter the wrong password: WrongPass
+4. Click the "Login" button
+5. Verify: Displays the error message "Wrong password"]
+
+---
+
+## Task
+
+Use the **browser tools** (Playwright MCP / Selenium MCP) to:
+
+1. **Open the browser** with the provided URL (viewport 1920x1080)
+2. **Navigate** through each step in the Test Cases
+3. **Collect** all the required locators by:
+   - Reading the Accessibility Tree
+   - Inspecting DOM attributes: `id`, `data-testid`, `name`, `aria-label`, `role`, `placeholder`
+   - NEVER **guessing** selectors — only take them from the real DOM
+4. **Prioritize** locators in this order (see `.agents/rules/locator_strategy.md`):
+   - Playwright: `getByRole` > `getByLabel` > `getByPlaceholder` > `getByTestId` > CSS > XPath
+   - Selenium: `id` > `data-testid` > `name` > `cssSelector` > `xpath`
+5. **Return the results** as a table:
+
+| Page | Element | Locator Type | Locator Value | Fallback Locator |
+|------|---------|-------------|---------------|------------------|
+
+⏸️ **Stop** after completing the locator table so I can review it before moving to Step 3.

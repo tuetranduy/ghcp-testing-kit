@@ -1,0 +1,77 @@
+# ============================================================
+# STEP 5: SCRIPT GENERATION
+# ============================================================
+# Workflow: generate-automation-from-testcases (continued)
+# Skill:    qa-automation-engineer
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER reviewing the POM (Step 3) and Data (Step 4)
+# 2. The AI will generate a complete Test script file
+# 3. Run the tests → if they fail → the AI self-fixes → loop until they PASS
+# ============================================================
+
+---START---
+
+All the POM structure (Step 3) and the Test Data Strategy (Step 4) are ready.
+
+Write the complete **Test script file**.
+
+## Mandatory Requirements:
+
+### 1. Code Structure
+
+- Import and initialize the Page classes written in Step 3
+- Use the Data Generator from Step 4
+- Split the code by the **Arrange → Act → Assert** pattern
+
+```
+Arrange: Set up data, initialize pages
+Act:     Perform the actions (navigate, fill, click)
+Assert:  Check the result (verify, expect)
+```
+
+### 2. Assertions
+
+- **MUST** have an assertion at the end of every test case
+- Should have interleaved assertions at key steps
+- Assertions must be clear and describe the expected behavior accurately
+
+Playwright:
+```typescript
+await expect(page.getByText('Login successful')).toBeVisible();
+await expect(page).toHaveURL(/dashboard/);
+```
+
+Selenium/TestNG:
+```java
+Assert.assertTrue(dashboardPage.isDisplayed(), "Dashboard should be visible after login");
+Assert.assertEquals(driver.getTitle(), "Dashboard");
+```
+
+### 3. Smart Waits
+
+- ⛔ **NEVER** use: `Thread.sleep()`, `page.waitForTimeout()`, `time.sleep()`
+- ✅ Playwright: Leverage auto-waiting + `expect().toBeVisible()`
+- ✅ Selenium: Use `WebDriverWait` + `ExpectedConditions`
+
+### 4. Test Independence
+
+- Each test case is **independent** (does not depend on other tests)
+- Clear setup/teardown (`beforeEach`, `afterEach` / `@BeforeMethod`, `@AfterMethod`)
+- Test data is unique on every run
+
+### 5. Self-fix Loop
+
+After generating the code, the AI **must run the tests itself**:
+1. Execute the tests in the terminal
+2. If they **PASS** → DONE, move to Step 6
+3. If they **FAIL** → Read the error log → Analyze the root cause → Fix the code → Re-run
+4. Repeat until they PASS reliably
+5. **Do NOT ask the user** during the self-fix process (unless an unclear business rule is found)
+
+---
+
+> ⚠️ See the framework-specific rules:
+> - Playwright: `.agents/rules/playwright_rules.md`
+> - Selenium: `.agents/rules/selenium_rules.md`
+> - Appium: `.agents/rules/appium_rules.md`

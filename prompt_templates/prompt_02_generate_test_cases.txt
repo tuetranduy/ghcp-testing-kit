@@ -1,0 +1,19 @@
+Use the generate-testcases-from-requirements skill.
+
+# CONTEXT
+- System type: [Web / Mobile / API]
+- Module: [Name of the module to test]
+- URL (if any): [System URL]
+- Requirement: [PASTE THE REQUIREMENT CONTENT HERE / UPLOAD FILE]
+
+# MODE
+# [Choose 1 of 2 modes]
+# - QUICK: Generate test cases quickly (default if not specified)
+# - FULL RBT: Complete 6-step process -> use the generate-manual-testcases-rbt skill instead
+
+# OUTPUT FORMAT
+# [Choose one of the formats: CSV / Excel (.xlsx) / TXT / Markdown (.md)]
+- Export the result to a CSV file. (e.g., testcases_module_name.csv)
+- Required columns:
+  TC ID, Module, Test Scenario, Pre-Condition, Test Steps, Test Data, Expected Result, Priority
+- TC ID rule: [PROJECT]_[MODULE]_TC_[NUMBER] (Example: CRM_LOGIN_TC_001)

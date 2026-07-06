@@ -1,0 +1,72 @@
+# ============================================================
+# STEP 4: TEST DATA STRATEGY
+# ============================================================
+# Workflow: generate-automation-from-testcases (continued)
+# Skill:    qa-automation-engineer + test-data-generator
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER reviewing the POM in Step 3
+# 2. The AI will generate a Utils/DataProvider class
+# 3. Review → move to Step 5
+# ============================================================
+
+---START---
+
+Test automation becomes flaky when it uses hardcoded data for unique fields (Email, Username, Customer Code, etc.).
+
+Design a **Test Data Strategy** according to the following requirements:
+
+## 1. Data Generator Class
+
+Write a Utils/Helper class to generate data automatically:
+- Use a suitable library: **Faker** (JS/TS), **JavaFaker** (Java), or UUID
+- Each function generates one specific type of data
+
+## 2. Traceable Format
+
+Data must follow the format:
+```
+[Prefix]_[TestName]_[Timestamp]_[Random]
+```
+
+Concrete examples:
+```
+Email:    auto_createCustomer_20260402_A3F2@test.com
+Username: auto_login_20260402_7B4D
+Code:     KH-20260402-A3F2
+Phone:    09[random 8 digits]
+```
+
+> Looking at the database or logs → you immediately know which test produced this data.
+
+## 3. Data for Each Test Type
+
+| Test Type | Data Requirement | Example |
+|-----------|-------------|-------|
+| **Happy Path** | Valid data, correct format | `valid_email@test.com`, `Test@12345` |
+| **Negative** | Wrong format, missing fields | `invalid-email`, `""`, `null` |
+| **Boundary** | Data at the min/max limits | `"A"` (1 char), `"A"*256` (over the max) |
+
+## 4. Integrate into the Project
+
+Explain how to use this data set in the Test Cases:
+
+Playwright:
+```typescript
+import { DataGenerator } from '../utils/data-generator';
+const testData = DataGenerator.createCustomer();
+```
+
+Selenium/Java:
+```java
+import utils.DataGenerator;
+String email = DataGenerator.generateEmail("createCustomer");
+```
+
+## 5. Mandatory Rules (see `.agents/rules/automation_rules.md`)
+
+- ❌ Do NOT hardcode data for unique fields
+- ❌ Do NOT reuse duplicate data across tests
+- ✅ Data must be unique on every run
+- ✅ Data must be traceable (you know which test produced it)
+- ✅ Support parallel runs without conflicts

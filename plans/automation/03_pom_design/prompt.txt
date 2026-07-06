@@ -1,0 +1,63 @@
+# ============================================================
+# STEP 3: DESIGN THE POM ARCHITECTURE (POM Design)
+# ============================================================
+# Workflow: generate-automation-from-testcases (continued)
+# Skill:    qa-automation-engineer
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER reviewing the locators in Step 2
+# 2. The AI will design the Page Object classes — it does NOT yet generate the test script
+# 3. Review the POM architecture → move to Step 4
+# ============================================================
+
+---START---
+
+Based on the list of locators **collected from the real DOM** in Step 2, design the **Page Object Model (POM)** architecture.
+
+## Requirements:
+
+### 1. Define the Page Classes
+
+- Each page/section is its own class
+- Class names must be clearly meaningful
+- Example: `LoginPage`, `DashboardPage`, `CustomerFormPage`, `CustomerListPage`
+
+### 2. Declare the Locators
+
+- Use exactly the locators collected in Step 2
+- Prefer robust selectors: `data-testid`, `id`, `name`, `role`
+- **Do not change** the locators from Step 2 unless there is a reason
+
+Playwright example:
+```typescript
+readonly emailInput = this.page.getByLabel('Email');
+readonly submitButton = this.page.getByRole('button', { name: 'Submit' });
+```
+
+Selenium example:
+```java
+private final By emailInput = By.id("email");
+private final By submitButton = By.cssSelector("button[data-testid='submit-btn']");
+```
+
+### 3. Encapsulate Methods
+
+- Name methods after the business action (not the technical action)
+- Each method performs **one** clear action
+- Return `this` or the next Page (fluent pattern)
+
+```
+✅ CORRECT: fillCustomerForm(), submitAndVerifySuccess()
+❌ WRONG:   clickButton(), inputText()
+```
+
+### 4. Important Rules
+
+- ⛔ **Do NOT yet generate the Test script file** — only design the Page classes
+- ✅ Outline the file structure, class names, locator declarations, and method signatures
+- ✅ You may write method bodies if the logic is clear
+- ✅ Follow `.agents/rules/automation_rules.md` (naming conventions, POM structure)
+
+---
+
+Present the POM structure so I can review the architecture before generating the test script in Step 5.

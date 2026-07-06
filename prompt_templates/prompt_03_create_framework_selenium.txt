@@ -1,0 +1,24 @@
+Use the generate-automation-framework skill.
+
+# CONTEXT
+I need to build a Web UI Automation Framework from scratch.
+- Technology: Java 17+ + Selenium WebDriver v4 + TestNG
+- Build tool: Maven
+- Report: Allure Report
+- Logging: Log4j 2.x
+
+# SYSTEM
+- URL: [System URL]
+- Test account: [EMAIL] / [PASSWORD]
+
+# OUTPUT FORMAT
+- Set up pom.xml (dependencies + plugins)
+- Implement Core components, Base classes
+- Create a Sample Page Object & Test
+- Configure Utilities (Test Data, Logs, Screenshots)
+- Set up CI/CD (GitHub Actions)
+- README.md instructions
+
+# NOTES
+- The agent scaffolds the ENTIRE project structure based on the framework-architect skill.
+- The agent verifies the framework works (compile + run the example test).

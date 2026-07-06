@@ -1,0 +1,47 @@
+# ============================================================
+# STEP 3: DECOMPOSITION
+# ============================================================
+# This is a standalone prompt — copy & paste into any AI
+# ============================================================
+# HOW TO USE:
+# 1. Send this prompt AFTER all Q&A questions from Step 2 have been answered
+# 2. Customize the decomposition hint if needed
+# 3. Review the results → move to Step 4
+# ============================================================
+
+---START---
+
+Assume that the requirements have been clarified through the Q&A process in Step 2.
+
+Perform a **Decomposition** of this feature into smaller Modules / Sub-modules to make testing easier to manage.
+
+## Output requirements:
+
+### 1. Module Decomposition (Feature Mapping)
+
+Split the feature into specific Modules and Sub-modules.
+
+[Decomposition scope hints (choose one or combine):
+- **By UI cluster:** Header, Sidebar, Data Table, input Form, Popup, Dialog...
+- **By task flow:** Create flow, Edit flow, Delete flow, Search flow...
+- **By entity:** User management, Product management, Order management...]
+
+### 2. Functional description
+
+For each Module/Sub-module, provide:
+- Module name (short, meaningful)
+- Functional description (1-2 sentences)
+- Key UI components (if any)
+
+### 3. Dependencies diagram
+
+Indicate the dependencies and data interactions between Modules:
+
+[Hint: For example:
+- The "Data Table" module displays data that depends on data from the "Registration Form" module
+- The "Customer Detail" module depends on the "Customer List" module
+- The "Export Report" module depends on data produced by Filter/Search...]
+
+---
+
+Present the results in **Markdown**, using tables or a tree diagram as appropriate.
